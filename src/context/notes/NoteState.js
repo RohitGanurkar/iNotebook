@@ -5,65 +5,25 @@ import { useState } from 'react'
 
 
 const NoteState = (props) => {
-    const noteinitial = [
-        {
-          "_id": "615de73bb083f0c9c3c19e1b",
-          "user": "615de6bab083f0c9c3c19ef14",
-          "title": "hello im rahul",
-          "description": "this is a react application ",
-          "tag": "persnol",
-          "date": "2021-10-06T18:13:15.370Z",
-          "__v": 0
-        },
-        {
-          "_id": "615fe8a69e4a769928dedd2e",
-          "user": "615de6bab083f0c9c3c19e14",
-          "title": "hello im Rahul",
-          "description": "this is my second note ",
-          "tag": "persnol",
-          "date": "2021-10-08T06:43:50.655Z",
-          "__v": 0
-        },
-        {
-          "_id": "615de73bb083f0fc9c3c19e1b",
-          "user": "615de6bab083f0c9c3c19e14",
-          "title": "hello im rahul",
-          "description": "this is a react application ",
-          "tag": "persnol",
-          "date": "2021-10-06T18:13:15.370Z",
-          "__v": 0
-        },
-        {
-          "_id": "615fe8a69e4a769928defdd2e",
-          "user": "615de6bab083f0c9c3c19e14",
-          "title": "hello im Rahul",
-          "description": "this is my second note ",
-          "tag": "persnol",
-          "date": "2021-10-08T06:43:50.655Z",
-          "__v": 0
-        },
-        {
-          "_id": "615de73bb08f3f0c9c3c19fe1b",
-          "user": "615de6bab083f0c9c3c19e14",
-          "title": "hello im rahul",
-          "description": "this is a react application ",
-          "tag": "persnol",
-          "date": "2021-10-06T18:13:15.370Z",
-          "__v": 0
-        },
-        {
-          "_id": "615fe8a69e4a769928dfedd2e",
-          "user": "615de6bab083f0c9c3c19e14",
-          "title": "hello im Rahul",
-          "description": "this is my second note ",
-          "tag": "persnol",
-          "date": "2021-10-08T06:43:50.655Z",
-          "__v": 0
-        }
-      ]
+    const noteinitial = []
 
-      const [notes, setnotes] = useState(noteinitial);
+    const url = "http://localhost:5000" ;
+    const [notes, setnotes] = useState(noteinitial);
       
+    const fetchAllNotes = async () => {
+      const response = await fetch(`${url}/api/note/fetchallnotes`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE1ZGU2YmFiMDgzZjBjOWMzYzE5ZTE0In0sImlhdCI6MTYzMzU0MzkwMn0.Pdb98-804Qj0hyKSV6MYYQJn9WGu8t1w-viNXE35ilQ"
+        }
+      });
+      const json = await response.json();
+      console.log(json)
+      setnotes(json);
+    }
+
+
       // Add a Note
       const addNote = ({title , description , tag}) =>{
         // TODO : API CALL
@@ -93,7 +53,7 @@ const NoteState = (props) => {
     
     return(
         // value me hame jo jo bhejna hai bhej skte hai
-        <NoteContext.Provider value={{ notes, addNote ,updateNote ,deleteNote }}>
+        <NoteContext.Provider value={{ notes, fetchAllNotes , addNote ,updateNote ,deleteNote }}>
             {props.children}
         </NoteContext.Provider>
     )
