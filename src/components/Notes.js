@@ -11,7 +11,7 @@ export default function Notes() {
   // this will be exicuting befor return
   useEffect(() => {
     fetchAllNotes();
-  }, [])
+  }, [notes])
 
   return (
     <>

@@ -6,8 +6,9 @@ import { useState } from 'react'
 
 const NoteState = (props) => {
     const noteinitial = []
-
     const url = "http://localhost:5000" ;
+
+    // State for notes
     const [notes, setnotes] = useState(noteinitial);
       
     const fetchAllNotes = async () => {
@@ -19,7 +20,6 @@ const NoteState = (props) => {
         }
       });
       const json = await response.json();
-      console.log(json)
       setnotes(json);
     }
 
@@ -45,10 +45,18 @@ const NoteState = (props) => {
       }
       
       // Delete a Note
-      const deleteNote = (id) =>{
+      const deleteNote = async(id) =>{
         // id NoteItem se aa rhi hai 
-        const filterNotes = notes.filter((items)=>{return items._id !== id});
-        setnotes(filterNotes);
+        console.log(id)
+        const response = await fetch(`${url}/api/note/deletenotes/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE1ZGU2YmFiMDgzZjBjOWMzYzE5ZTE0In0sImlhdCI6MTYzMzU0MzkwMn0.Pdb98-804Qj0hyKSV6MYYQJn9WGu8t1w-viNXE35ilQ"
+          }
+        });
+        const json = await response.json();
+        console.log(json)
       }
     
     return(
