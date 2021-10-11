@@ -25,18 +25,19 @@ const NoteState = (props) => {
 
 
       // Add a Note
-      const addNote = ({title , description , tag}) =>{
-        // TODO : API CALL
-        let note = {
-          "_id": "615fe8a69e4a769928dfedd2e",
-          "user": "615de6bab083f0c9c3c19e14",
-          "title": title,
-          "description": description,
-          "tag": tag,
-          "date": "2021-10-08T06:43:50.655Z",
-          "__v": 0
-        }
-        setnotes(notes.concat(note))
+      const addNote = async ({title , description , tag}) =>{
+        // AddNote component using this addNote function
+        const responses = await fetch(`${url}/api/note/addnotes`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE1ZGU2YmFiMDgzZjBjOWMzYzE5ZTE0In0sImlhdCI6MTYzMzU0MzkwMn0.Pdb98-804Qj0hyKSV6MYYQJn9WGu8t1w-viNXE35ilQ"
+          },
+          body:JSON.stringify({title,description,tag})
+        });
+        const json = await responses.json();
+        // setnotes(json);
+        setnotes(notes.concat(json))
       }
 
       // Update a Note
@@ -47,7 +48,6 @@ const NoteState = (props) => {
       // Delete a Note
       const deleteNote = async(id) =>{
         // id NoteItem se aa rhi hai 
-        console.log(id)
         const response = await fetch(`${url}/api/note/deletenotes/${id}`, {
           method: 'DELETE',
           headers: {
