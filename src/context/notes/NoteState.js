@@ -36,13 +36,21 @@ const NoteState = (props) => {
           body:JSON.stringify({title,description,tag})
         });
         const json = await responses.json();
-        // setnotes(json);
         setnotes(notes.concat(json))
       }
 
       // Update a Note
-      const updateNote = (id) =>{
-        
+      const updateNote = async(id, title , description , tag) =>{
+        const responses = await fetch(`${url}/api/note/updatenotes/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE1ZGU2YmFiMDgzZjBjOWMzYzE5ZTE0In0sImlhdCI6MTYzMzU0MzkwMn0.Pdb98-804Qj0hyKSV6MYYQJn9WGu8t1w-viNXE35ilQ"
+          },
+          body:JSON.stringify({title,description,tag})
+        });
+        const json = await responses.json();
+        console.log(json)
       }
       
       // Delete a Note
