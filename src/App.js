@@ -6,6 +6,7 @@ import About from "./components/About";
 import Navbar from "./components/Navbar";
 import Alert from "./components/Alert";
 import { useState } from "react";
+import LogIn from "./components/LogIn";
 
 
 
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route exact path="/about">
             <About />
+          </Route>
+          <Route exact path="/login">
+            <LogIn />
           </Route>
       </Switch>
       </div>

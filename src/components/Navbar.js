@@ -7,7 +7,7 @@ export default function Navbar() {
     // for highlit navbar content [useLocation used for check current location of a page]
     let location = useLocation();
     useEffect(() => {
-        console.log(location.pathname)
+        // console.log(location.pathname)
     }, [location]);
     return (
         <>
@@ -27,8 +27,8 @@ export default function Navbar() {
                 </li>
             </ul>
             <form className="d-flex">
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button className="btn btn-outline-success" type="submit">Search</button>
+                <Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
+                <Link className="btn btn-primary mx-2" to="/singup" role="button">Singup</Link>
             </form>
             </div>
         </div>
