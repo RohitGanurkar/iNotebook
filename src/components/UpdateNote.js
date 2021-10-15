@@ -49,10 +49,6 @@ export default function UpdateNote(props) {
                     <label htmlFor="exampleInputPassword1" className="form-label" >Tag</label>
                     <input type="text" className="form-control" id="Etag" value={editNote.Etag} name="Etag" onChange={onChange}/>
                 </div>
-                <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                </div>
               </form>
               </div>
               <div className="modal-footer">
