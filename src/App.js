@@ -5,23 +5,17 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Navbar from "./components/Navbar";
 import Alert from "./components/Alert";
-import { useState } from "react";
 import LogIn from "./components/LogIn";
 import SingUp from "./components/SingUp";
 
 
-
-
 function App() {
-  const [alert, setalert] = useState(true)
-  setTimeout(() => {setalert(false)}, 3000);
-  
   return (
     <>
     <NoteState>
       <Router>
       <Navbar/>
-      <Alert Alert={alert}/>
+      <Alert/>
       <div className="container">
       <Switch>
           <Route exact path="/">

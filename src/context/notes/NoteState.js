@@ -66,10 +66,20 @@ const NoteState = (props) => {
         const json = await response.json();
         console.log(json)
       }
+
+      const [alert, setAlert] = useState(null)
+      const showAlert = (massage, type)=>{
+        setAlert({
+          massage, type
+        })
+        setTimeout(() => {
+          setAlert(null)
+        }, 2000);
+      }
     
     return(
         // value me hame jo jo bhejna hai bhej skte hai
-        <NoteContext.Provider value={{ notes, fetchAllNotes , addNote ,updateNote ,deleteNote }}>
+        <NoteContext.Provider value={{ notes, fetchAllNotes , addNote ,updateNote ,deleteNote , alert , showAlert}}>
             {props.children}
         </NoteContext.Provider>
     )

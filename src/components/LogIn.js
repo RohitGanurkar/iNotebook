@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState , useContext } from 'react'
 import { useHistory } from 'react-router-dom'
+import NoteContext from '../context/notes/noteContext';
 
 export default function LogIn() {
+    // for alert
+    const getContext = useContext(NoteContext);
+    const { showAlert} = getContext;
+
     // useHistory use to redirect any link to another
     let history = useHistory();
 
@@ -27,10 +32,11 @@ export default function LogIn() {
         if (json.success) { 
             localStorage.setItem('token' , json.authentication);
             // Redirect to homepage
-            history.push("/") 
+            history.push("/")
+            showAlert("Logged In " , "primary")
         }
         else {
-            alert("Email or Password worng")
+            showAlert("Username or Password are invalid" , "danger")
         }
 
     }

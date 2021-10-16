@@ -7,7 +7,7 @@ export default function UpdateNote(props) {
 
   // FOR use noteContext :- NoteState se sab yha aa jata hai fir use use kar skte hai
   const getContext = useContext(NoteContext);
-  const { updateNote} = getContext;
+  const { updateNote , showAlert} = getContext;
 
   const toClose = useRef(null);
 
@@ -20,6 +20,7 @@ export default function UpdateNote(props) {
     const handleClick = (e)=>{
       updateNote(editNote.id,editNote.Etitle,editNote.Edescription,editNote.Etag)
       toClose.current.click();
+      showAlert("The Note is Added in Your NootBook" , "success")
     }
 
     return (

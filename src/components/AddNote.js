@@ -5,7 +5,7 @@ import NoteContext from "../context/notes/noteContext";
 export default function AddNote() {
     // FOR use noteContext :- NoteState se sab yha aa jata hai fir use use kar skte hai
     const getContext = useContext(NoteContext);
-    const { addNote } = getContext;
+    const { addNote,showAlert } = getContext;
 
     // temprery state for only this Componet
     const [note, setNote] = useState({title:"",description:"",tag:""})
@@ -15,6 +15,7 @@ export default function AddNote() {
         e.preventDefault();
         addNote(note);
         setNote({title:"",description:"",tag:""})
+        showAlert("The Note is Added in Your NootBook" , "success")
     }
 
     // to track Input filed
