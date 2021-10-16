@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Alert from "./components/Alert";
 import { useState } from "react";
 import LogIn from "./components/LogIn";
+import SingUp from "./components/SingUp";
 
 
 
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/login">
             <LogIn />
+          </Route>
+          <Route exact path="/singup">
+            <SingUp />
           </Route>
       </Switch>
       </div>

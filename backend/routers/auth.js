@@ -49,7 +49,7 @@ router.post('/createuser' ,
             }
         }
         const authToken = jwt.sign( data, JWT_SECRET);
-        res.json({authToken});
+        res.json({success:true , authToken});
         // res.json(`The data has been Added : ${createUser}`);
 
     } catch(error){
@@ -87,7 +87,7 @@ router.post('/loginuser' ,
                     user:{ id: userLogin.id }
                 }
                 const authToken = jwt.sign( data, JWT_SECRET);
-                res.json({success:true, authToken});
+                res.json({success:true , authToken});
             } else{ 
                 res.status(404).json({error: "write here : correct authantication" })
             }
