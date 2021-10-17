@@ -22,18 +22,16 @@ export default function LogIn() {
         const response = await fetch(`http://localhost:5000/api/auth/loginuser`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE1ZGU2YmFiMDgzZjBjOWMzYzE5ZTE0In0sImlhdCI6MTYzMzU0MzkwMn0.Pdb98-804Qj0hyKSV6MYYQJn9WGu8t1w-viNXE35ilQ"
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({ email: authentication.email, password: authentication.password })
         });
         const json = await response.json();
-        console.log(json)
         if (json.success) { 
-            localStorage.setItem('token' , json.authentication);
+            localStorage.setItem('token' , json.authToken);
+            showAlert("Logged In " , "primary")
             // Redirect to homepage
             history.push("/")
-            showAlert("Logged In " , "primary")
         }
         else {
             showAlert("Username or Password are invalid" , "danger")
@@ -42,6 +40,7 @@ export default function LogIn() {
     }
     return (
         <div>
+            <h2>Log in to Access Your Notes</h2>
             <form onSubmit={onSubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>

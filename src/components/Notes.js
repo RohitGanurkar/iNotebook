@@ -3,15 +3,25 @@ import NoteContext from "../context/notes/noteContext";
 import AddNote from "./AddNote";
 import NoteItem from "./NoteItem";
 import UpdateNote from "./UpdateNote";
+import { useHistory } from 'react-router-dom'
 
 export default function Notes() {
   // FOR use noteContext :- NoteState se sab yha aa jata hai fir use use kar skte hai
   const getContext = useContext(NoteContext);
   const { notes, fetchAllNotes } = getContext;
 
+  // useHistory use to redirect any link to another
+  let history = useHistory();
+
   // this will be exicuting befor return
   useEffect(() => {
-    fetchAllNotes();
+
+    if(localStorage.getItem('token')){
+      fetchAllNotes();
+    }else{
+      history.push("/login")
+    }
+    
   }, [fetchAllNotes])
 
   // This is use to do any task

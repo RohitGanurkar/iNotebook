@@ -11,12 +11,13 @@ const NoteState = (props) => {
     // State for notes
     const [notes, setnotes] = useState(noteinitial);
       
+    // Fetch all Notes
     const fetchAllNotes = async () => {
       const response = await fetch(`${url}/api/note/fetchallnotes`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE1ZGU2YmFiMDgzZjBjOWMzYzE5ZTE0In0sImlhdCI6MTYzMzU0MzkwMn0.Pdb98-804Qj0hyKSV6MYYQJn9WGu8t1w-viNXE35ilQ"
+          "auth-token": localStorage.getItem('token')
         }
       });
       const json = await response.json();
@@ -31,7 +32,7 @@ const NoteState = (props) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE1ZGU2YmFiMDgzZjBjOWMzYzE5ZTE0In0sImlhdCI6MTYzMzU0MzkwMn0.Pdb98-804Qj0hyKSV6MYYQJn9WGu8t1w-viNXE35ilQ"
+            "auth-token": localStorage.getItem('token')
           },
           body:JSON.stringify({title,description,tag})
         });
@@ -45,7 +46,7 @@ const NoteState = (props) => {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE1ZGU2YmFiMDgzZjBjOWMzYzE5ZTE0In0sImlhdCI6MTYzMzU0MzkwMn0.Pdb98-804Qj0hyKSV6MYYQJn9WGu8t1w-viNXE35ilQ"
+            "auth-token": localStorage.getItem('token')
           },
           body:JSON.stringify({title,description,tag})
         });
@@ -60,7 +61,7 @@ const NoteState = (props) => {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE1ZGU2YmFiMDgzZjBjOWMzYzE5ZTE0In0sImlhdCI6MTYzMzU0MzkwMn0.Pdb98-804Qj0hyKSV6MYYQJn9WGu8t1w-viNXE35ilQ"
+            "auth-token": localStorage.getItem('token')
           }
         });
         const json = await response.json();

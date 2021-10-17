@@ -43,6 +43,7 @@ export default function SingUp() {
     return (
         <div>
             <div className="container">
+            <h2>Singup to use iNotebook App</h2>
             <form onSubmit={onSubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputName" className="form-label">Name</label>
